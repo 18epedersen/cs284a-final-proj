@@ -51,19 +51,42 @@
 <div>
 <h2> Title, Summary and Team Members </h2>
 <p class="question"> Title </p>
+<p> Battling Humans VR game <p>
 <p class="question"> Summary </p>
+<p> Taking inspiration from the popular Nintendo fighting game Super Smash Bros, we’d like to make a VR game for fighting between human-like avatars. We will model human skin, hair, specific types of clothing fabric, and hopefully how skin reacts during collisions (during the multi-playing fighting). </p>
 <p class="question"> Team members </p>
+<p> Isabella Chavira, Emily Pedersen, and George Zhang </p>
 <h2> Problem Description </h2>
 <p class="question"> Here you should provide the context for your idea. Describe the problem that you are trying to solve, why it is important, where it is challenging. Give us a general idea on how you are going to solve it. </p>
+<p> The purpose of our project is for entertainment. We plan to make a virtual reality fighting video game. An interesting component of video games is the immersion of the player, which can be greatly heightened through the use of VR. The capabilities of VR are constantly expanding and we thought it would be interesting to explore these by converting a well-known video game type to VR for an added sense of realism. </p>
+<p> This will be especially challenging in the realm of graphics. Since we are trying to add elements of realism into the typical fighting video game, we will be especially focused on the materials of the fighting opponent and how these react to collisions. Materials associated with the human body (i.e. skin, hair, clothing etc…) are already deemed as difficult to realistically render, so adding the collision element to these materials will be even more challenging. Another challenge is making sure the render times of the video game are fast enough for VR. Since VR requires a player to place the screen over their eyes using goggles the game would need to render at 90 frames per second to avoid the player becoming dizzy or nauseous. </p>
+<p> We plan to have a VR fighting video game in which the player will fight against another humanoid character. Our goal is to add extra realism into the typical console fighting game by using virtual reality to further immerse the player into the experience. </p>
 <h2> Goals and Deliverables </h2>
 <p class="question"> If you are working on an interactive system, describe what demo you will create. </p>
-<p class="question"> Define how you will measure the quality / performance of your system (e.g. graphs showing speedup, or quantifying accuracy). It may not be possible to define precise target metrics at this time, but we encourage you to try. </p>
+<p> Our goal for this project would be to have a virtual reality fighting game in which the player can fight against another player, or computer character. Our demo would allow the player to move around the VR map and fight their opponent using punches and kicks. The opponent would be another humanoid type character with skin, hair, and clothing. These materials would realistically react to the collisions from the hits of the player. In this demo each player would have a health bar which would decrease whenever being punched or kicked by the opponent. The game would end when one player loses all of their health. </p>
+<p class="question"> Define how you will measure the quality/performance of your system (e.g. graphs showing speedup, or quantifying accuracy). It may not be possible to define precise target metrics at this time, but we encourage you to try. </p>
+<p> We will measure the quality and performance of our system by tracking (1) the frames per second (fps) of our game, (2) how accurately the VR system can respond to human motion input, (3) how accurately collision is detected, especially with models with moving parts, (4) the response of meshes to collisions, (5) the smoothness of model animations, especially when transitioning between different animations, (6) how appropriate the lighting is, and (7) how balanced the gameplay is. </p>
 <p class="question"> What questions do you plan to answer with your analysis? </p>
+<p> Through developing this VR game, we want to realistically model certain materials such as human skin, hair, and certain fabrics, as well as model model skin-to-skin impact collision. We also want to delve deeper into the intersection of computer graphics and VR. </p>
 <p class="question"> You should break this section into two parts: (1) what you plan to deliver, and (2) what you hope to deliver. In (1), describe what you believe you must accomplish to have a successful project and achieve the grade you expect (i.e. your baseline plan -- planning for some unexpected problems would make sense). In (2), describe what you hope to achieve if things go well and you get ahead of schedule (your aspirational plan). </p>
+<p> (1) We plan to deliver a VR fighting game, in which either two players’ avatars can fight each other in VR, or one player plays against a computer player. To represent these battling avatars, we plan to model certain materials such as human skin, hair, and clothing fabric. (2) In our aspirational plan, we also hope to accurately depict skin-to-skin impact collisions, such as how skin looks after one avatar punches the other. We also discussed if modeling skin-to-skin collisions is too challenging for the time we have, we model the human-like avatars punching different materials, such as a bag made of water, grains, etc. </p>
 <h2> Schedule </h2>
 <p class="question"> In this section you should organize and plan the tasks and subtasks that your team will execute. Since presentations are ~4 weeks from the due-date of the proposal, you should include a set of tasks for every week. </p>
+<p> For the week of 4/15, we hope to complete small VR demos on Unity. </p>
+<p> For the week of 4/22, we hope to have explored character modeling, texturing, and animating with Blender, and importing these animated textured models into Unity. </p>
+<p> For the week of 4/29, we hope to have merged all of our progress, begun play testing and debugging. </p>
+<p> For the week of 5/6, we hope to have finished debugging, and begin the writeup. </p>
+
 <h2> Resources </h2>
 <p class="question"> List what resources, e.g. books, papers and/or online resources that are references for your project. List the computing platform, hardware and software resources that you will use for your project. You have a wide latitude here to use what you have access to, but be aware that you will have to support and trouble-shoot on your platform yourselves. If you are starting from an existing piece of code or system, describe and provide a pointer to it here. </p>
+<p> Here are some resources. We will add more as our project progress:
+<ul>
+  <li> Unity documentation: <a href ="https://docs.unity3d.com/Manual/index.html" target="_blank"> https://docs.unity3d.com/Manual/index.html </a> </li>
+  <li> Research lab at University of Washington, regarding intersection of computer graphics and VR: <a href="https://www.cs.washington.edu/research/graphics" target="_blank"> https://www.cs.washington.edu/research/graphics </a> </li>
+  <li> Nvidia “Turing Architecture improves VR Experiences” (quoted from this article): <a href="https://loupventures.com/nvidia-unveils-the-holy-grail-of-computer-graphics/" target="_blank"> https://loupventures.com/nvidia-unveils-the-holy-grail-of-computer-graphics/ </a> </li>
+</ul>
+We are planning to develop on Unity, and will need access to VR headsets and hand controllers. Last semester, Emily was in the graduate VR/AR seminar, and had access to these hardware tools in the Blum Hall VR lab. However, we will need access to that building again (Emily had access last semester due to that class). </p>
+
 </div>
 </body>
 </html>
