@@ -74,103 +74,25 @@
 </head>
 <body>
 <br />
-<h1>CS184/284a Final Project :: Merging bubbles simulation</h1>
+<h1>CS184/284a Final Project :: Bubbles Simulation in Blender and OpenGL</h1>
 <h3> Izzy Chavira, Emily Pedersen, and George Zhang </h3>
 <div class="topnav">
-  <a class="active" href="index.html">Milestone</a>
+  <a class="active" href="index.html"> Final Report </a>
+  <a href="milestone.html">Milestone</a>
   <a href="proposal.html">Proposal</a>
 </div>
 <div>
-<h2> 4.30.19 </h2>
+<h2> 5.14.19 </h2>
 <h2> Deliverables </h2>
-<ul>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5JI-_f4A_Os" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<li> <a href="https://docs.google.com/presentation/d/1lReVMB5WVA2fC3URPrP02PAau-SDFlvxGyVZ6jqQvhc/edit?usp=sharing" target="_blank"> Presentation slides </a> </li>
-<li> <a href = "https://www.overleaf.com/read/wrxvcfjsyqjj" target="_blank"> SIGGRAPH template </a>
-<p> In the template, we have abstract, introduction, related works, technical contributions, implementations, results, and discussion sections. </p>
- </li>
-</ul>
-<h2> Progress report </h2>
-<p>So far, we can (1) load an exported Blender .obj model, (2) render it using OpenGL, (3) compute Blinn-Phong shading, (4) "batch render" multiple instances of the same model (using some optimizations), and (5) move throughout the "world" with a movable camera. We built our OpenGL rendering system "from scratch" using the GLEW, GLFW, and glm libraries and the stb_image API.</p>
+<h3> Paper </h3>
+<p> Bubble Simulation in Blender and OpenGL by Pedersen, Zhang, and Chavira </p> 
+<h3> Final video </h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4s7LuvMJM04" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3> GitHub repo </h3>
+<p><a href="https://github.com/18epedersen/cs284a-final-proj" target=_blank> 18epedersen/cs284a-final-proj </a> </p>
 
-<div align="center">
-    <table style="width=100%">
-        <tr>
-            <td align="middle">
-            <img src="images/a.JPG" width="480px" />
-            <figcaption align="middle">Model structure</figcaption>
-            <td align="middle">
-            <img src="images/b.JPG" width="480px" />
-            <figcaption align="middle">Rendering structure</figcaption>
-        </tr>
-    </table>
-</div>
 
-<p>Shown above are the structures for our model and rendering systems. Vertex Array Objects (VAOs), Vertex Buffer Objects (VBOs), and Index Buffers (IBs, which is a type of VBO) are "building blocks" of OpenGL. A VAO has multiple "attribute lists", each of which can store a VBO, which is an array of data (e.g. position, texture, normal data). Thus, we made a class for each: <code>VertexArray</code>, <code>VertexBuffer</code>, and <code>IndexBuffer</code>. A <code>RawModel</code> has a <code>VertexArray</code> and <code>IndexBuffer</code>. A <code>TexturedModel</code> has a <code>RawModel</code> and <code>Texture</code>, which has ambient, diffuse, specular, and shininess coefficients (for Blinn-Phong shading). A <code>Entity</code> has a <code>TexturedModel</code> and a position, rotation, and scale. <code>Entity</code> allows us to "batch render" multiple of the same <code>TexturedModel</code> with different positions, rotations, and scales. Without <code>Entity</code>, we may instead have to create one <code>TexturedModel</code> for each model we render. <code>Entity</code> allows us to share the same <code>TexturedModel</code> across many rendered models.</p>
 
-<p>In our rendering system, we of course have a <code>Shader</code> class. Its <code>setUniformXX()</code> methods allow us to load uniform values to the GLSL vertex and fragment shaders. <code>Shader</code> also has a string parser to read the vertexShader.shader and fragmentShader.shader files. <code>MasterRenderer</code> has a hash map with <code>TexturedModel</code> keys and <code>vector of Entity</code> values. This hash map allows us to "batch render" more efficiently. One <code>TexturedModel</code> is shared among many <code>Entity</code>s. Thus, we only need to process (bind texture, load texture uniforms, bind VAO and IB) the <code>TexturedModel</code> once. Then we can render as many <code>Entity</code>s with the same <code>TexturedModel</code>. <code>MasterRenderer</code> also has a <code>Shader</code>, which is needed to load uniforms from the <code>Light</code>, <code>Camera</code>, and <code>Texture</code>.</p>
-
-<div align="center">
-    <table style="width=100%">
-        <tr>
-            <td align="middle">
-            <img src="images/c.PNG" width="600px" />
-            <figcaption align="middle">Open display, create <code>TexturedModel</code>, <code>Light</code>, many dragon <code>Entity</code>s, and <code>MasterRenderer</code>.</figcaption>
-            <td align="middle">
-            <img src="images/d.PNG" width="360px" />
-            <figcaption align="middle">While display is open loop and close display.</figcaption>
-        </tr>
-    </table>
-</div>
-
-<p>Shown above is our <code>main()</code> function.</p>
-
-<p>What's in a .obj file exported from Blender?</p>
-
-<div align="center">
-    <table style="width=100%">
-        <tr>
-            <td align="middle">
-            <img src="images/e.PNG" width="360px" />
-            <figcaption align="middle">v: position coordinates.</figcaption>
-            <td align="middle">
-            <img src="images/f.PNG" width="240px" />
-            <figcaption align="middle">vt: texture coordinates.</figcaption>
-        </tr>
-        <tr>
-            <td align="middle">
-            <img src="images/g.PNG" width="240px" />
-            <figcaption align="middle">vn: normal vectors.</figcaption>
-            <td align="middle">
-            <img src="images/h.PNG" width="240px" />
-            <figcaption align="middle">f: triangles.</figcaption>
-        </tr>
-    </table>
-</div>
-
-<p>As shown above, in a .obj file, you may find rows starting with v (position coordinates), vt (texture coordinates), vn (normal vectors), and f. In each f row, we have three triples. Each triple has three indices corresponding to the index of v, vt, and vn that make a vertex. Three vertices form a triangle. Thus, the .obj file lists v, vt, and vn rows in random order. The f rows tell us which v, vt, and vn rows form a vertex. We created a string parser in class <code>OBJLoader</code> to load these values into IBs and VBOs into VAOs.</p>
-<h2> Preliminary results </h2>
-<p>We have a barebones OpenGL rendering system with "batch rendering", Blinn-Phong shading, and a movable camera. We now have a much better understanding of the OpenGL rendering pipeline and can now comfortably move forward with implementing our bubble physics.</p>
-
-<div align="center">
-    <table style="width=100%">
-        <tr>
-            <td align="middle">
-            <img src="images/i.PNG" width="600px" />
-            <figcaption align="middle">"Batch rendering" of dragon <code>Entity</code>s with Blinn-Phong shading.</figcaption>
-        </tr>
-    </table>
-</div>
-<h2> Progress relative to plan </h2>
-<p> After getting feedback from the TAs on our original project idea, we realized that we greatly underestimated the difficulty and time that it would take to create a VR fighting game with realistic collisions and human avatars. Because of this we decided to completely change our original idea. We liked the idea of modelling and simulating object collisions, and we decided that modelling the physics of bubbles colliding and merging would be a feasible, yet interesting and novel, project idea. </p>
-<p> Since changing our idea, we have started to work on understanding the OpenGL pipeline. As of right now, we are able to create models in Blender and transfer them into OpenGl. Once in OpenGL we can use the arrow keys on the computer to move the object around the screen. Now that we have the groundwork for our project we have to focus the next two weeks on using this to model bubbles. The next step will be to create a realistic bubble model in Blender. Once we have this we will need to transfer it into an OpenGL environment where we can apply the proper physics to the model. We still have a good deal of work to put in before we are able to do this, but with the understanding of OpenGL that we have formulated since the start of this project, it is well within our abilities.
-</p>
-<h2> Updated work plan </h2>
-<ul>
-<li>End of this week (5/5): Create bubble model in blender </li>
-<li> Middle of next week (5/8): Put physics equations attached to bubble in OpenGL </li>
-<li> End of next week (5/10): Merge bubbles </li>
-</ul>
 
 
 </div>
