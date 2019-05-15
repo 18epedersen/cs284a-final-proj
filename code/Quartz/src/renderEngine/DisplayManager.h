@@ -17,9 +17,9 @@ public:
 
 private:
 	static GLFWwindow* m_Window;
-	static const int DIM_SCALE = 2;
-	static const int WIDTH = 720 * DIM_SCALE;
-	static const int HEIGHT = 540 * DIM_SCALE;
+	static const int DIM_SCALE = 3;
+	static const int WIDTH = 640 * DIM_SCALE;
+	static const int HEIGHT = 480 * DIM_SCALE;
 
 	static float m_LastFrameTime;
 	static float m_DeltaTime;
